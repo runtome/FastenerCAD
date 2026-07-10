@@ -1,0 +1,33 @@
+{
+  "designation": "M4",
+  "nominal_diameter": 4.0,
+  "thread": {
+    "coarse": {
+      "pitch": 0.7,
+      "pitch_dia": 3.5454,
+      "minor_dia_bolt": 3.1412,
+      "minor_dia_nut": 3.2423
+    },
+    "fine": [
+      {
+        "pitch": 0.5,
+        "pitch_dia": 3.6753,
+        "minor_dia_bolt": 3.3865,
+        "minor_dia_nut": 3.4588
+      }
+    ]
+  },
+  "hex_head": {
+    "width_across_flats": 7.0,
+    "head_height": 2.8
+  },
+  "hex_nut": {
+    "width_across_flats": 7.0,
+    "height": 3.2
+  },
+  "washer": {
+    "inner_dia": 4.3,
+    "outer_dia": 9.0,
+    "thickness": 0.8
+  }
+}

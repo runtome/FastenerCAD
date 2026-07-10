@@ -1,0 +1,45 @@
+{
+  "designation": "M48",
+  "nominal_diameter": 48.0,
+  "thread": {
+    "coarse": {
+      "pitch": 5.0,
+      "pitch_dia": 44.7525,
+      "minor_dia_bolt": 41.8655,
+      "minor_dia_nut": 42.5875
+    },
+    "fine": [
+      {
+        "pitch": 3.0,
+        "pitch_dia": 46.0515,
+        "minor_dia_bolt": 44.3193,
+        "minor_dia_nut": 44.7525
+      },
+      {
+        "pitch": 2.0,
+        "pitch_dia": 46.701,
+        "minor_dia_bolt": 45.5462,
+        "minor_dia_nut": 45.835
+      },
+      {
+        "pitch": 1.5,
+        "pitch_dia": 47.0258,
+        "minor_dia_bolt": 46.1596,
+        "minor_dia_nut": 46.3762
+      }
+    ]
+  },
+  "hex_head": {
+    "width_across_flats": 75.0,
+    "head_height": 30.0
+  },
+  "hex_nut": {
+    "width_across_flats": 75.0,
+    "height": 38.0
+  },
+  "washer": {
+    "inner_dia": 52.0,
+    "outer_dia": 92.0,
+    "thickness": 8.0
+  }
+}

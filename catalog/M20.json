@@ -1,0 +1,39 @@
+{
+  "designation": "M20",
+  "nominal_diameter": 20.0,
+  "thread": {
+    "coarse": {
+      "pitch": 2.5,
+      "pitch_dia": 18.3762,
+      "minor_dia_bolt": 16.9327,
+      "minor_dia_nut": 17.2937
+    },
+    "fine": [
+      {
+        "pitch": 1.5,
+        "pitch_dia": 19.0257,
+        "minor_dia_bolt": 18.1596,
+        "minor_dia_nut": 18.3762
+      },
+      {
+        "pitch": 1.0,
+        "pitch_dia": 19.3505,
+        "minor_dia_bolt": 18.7731,
+        "minor_dia_nut": 18.9175
+      }
+    ]
+  },
+  "hex_head": {
+    "width_across_flats": 30.0,
+    "head_height": 12.5
+  },
+  "hex_nut": {
+    "width_across_flats": 30.0,
+    "height": 18.0
+  },
+  "washer": {
+    "inner_dia": 21.0,
+    "outer_dia": 37.0,
+    "thickness": 3.0
+  }
+}

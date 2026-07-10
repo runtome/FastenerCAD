@@ -1,0 +1,33 @@
+{
+  "designation": "M5",
+  "nominal_diameter": 5.0,
+  "thread": {
+    "coarse": {
+      "pitch": 0.8,
+      "pitch_dia": 4.4804,
+      "minor_dia_bolt": 4.0185,
+      "minor_dia_nut": 4.134
+    },
+    "fine": [
+      {
+        "pitch": 0.5,
+        "pitch_dia": 4.6753,
+        "minor_dia_bolt": 4.3865,
+        "minor_dia_nut": 4.4588
+      }
+    ]
+  },
+  "hex_head": {
+    "width_across_flats": 8.0,
+    "head_height": 3.5
+  },
+  "hex_nut": {
+    "width_across_flats": 8.0,
+    "height": 4.7
+  },
+  "washer": {
+    "inner_dia": 5.3,
+    "outer_dia": 10.0,
+    "thickness": 1.0
+  }
+}

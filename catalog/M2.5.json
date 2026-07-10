@@ -1,0 +1,33 @@
+{
+  "designation": "M2.5",
+  "nominal_diameter": 2.5,
+  "thread": {
+    "coarse": {
+      "pitch": 0.45,
+      "pitch_dia": 2.2077,
+      "minor_dia_bolt": 1.9479,
+      "minor_dia_nut": 2.0129
+    },
+    "fine": [
+      {
+        "pitch": 0.35,
+        "pitch_dia": 2.2727,
+        "minor_dia_bolt": 2.0706,
+        "minor_dia_nut": 2.1211
+      }
+    ]
+  },
+  "hex_head": {
+    "width_across_flats": 5.0,
+    "head_height": 1.7
+  },
+  "hex_nut": {
+    "width_across_flats": 5.0,
+    "height": 2.0
+  },
+  "washer": {
+    "inner_dia": 2.7,
+    "outer_dia": 6.0,
+    "thickness": 0.5
+  }
+}

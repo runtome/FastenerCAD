@@ -1,0 +1,45 @@
+{
+  "designation": "M12",
+  "nominal_diameter": 12.0,
+  "thread": {
+    "coarse": {
+      "pitch": 1.75,
+      "pitch_dia": 10.8634,
+      "minor_dia_bolt": 9.8529,
+      "minor_dia_nut": 10.1056
+    },
+    "fine": [
+      {
+        "pitch": 1.5,
+        "pitch_dia": 11.0258,
+        "minor_dia_bolt": 10.1596,
+        "minor_dia_nut": 10.3763
+      },
+      {
+        "pitch": 1.25,
+        "pitch_dia": 11.1881,
+        "minor_dia_bolt": 10.4664,
+        "minor_dia_nut": 10.6469
+      },
+      {
+        "pitch": 1.0,
+        "pitch_dia": 11.3505,
+        "minor_dia_bolt": 10.7731,
+        "minor_dia_nut": 10.9175
+      }
+    ]
+  },
+  "hex_head": {
+    "width_across_flats": 18.0,
+    "head_height": 7.5
+  },
+  "hex_nut": {
+    "width_across_flats": 18.0,
+    "height": 10.8
+  },
+  "washer": {
+    "inner_dia": 13.0,
+    "outer_dia": 24.0,
+    "thickness": 2.5
+  }
+}

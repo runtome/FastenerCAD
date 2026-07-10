@@ -1,0 +1,33 @@
+{
+  "designation": "M3",
+  "nominal_diameter": 3.0,
+  "thread": {
+    "coarse": {
+      "pitch": 0.5,
+      "pitch_dia": 2.6753,
+      "minor_dia_bolt": 2.3865,
+      "minor_dia_nut": 2.4588
+    },
+    "fine": [
+      {
+        "pitch": 0.35,
+        "pitch_dia": 2.7727,
+        "minor_dia_bolt": 2.5706,
+        "minor_dia_nut": 2.6211
+      }
+    ]
+  },
+  "hex_head": {
+    "width_across_flats": 5.5,
+    "head_height": 2.0
+  },
+  "hex_nut": {
+    "width_across_flats": 5.5,
+    "height": 2.4
+  },
+  "washer": {
+    "inner_dia": 3.2,
+    "outer_dia": 7.0,
+    "thickness": 0.5
+  }
+}

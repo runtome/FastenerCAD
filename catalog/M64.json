@@ -1,0 +1,45 @@
+{
+  "designation": "M64",
+  "nominal_diameter": 64.0,
+  "thread": {
+    "coarse": {
+      "pitch": 6.0,
+      "pitch_dia": 60.103,
+      "minor_dia_bolt": 56.6386,
+      "minor_dia_nut": 57.505
+    },
+    "fine": [
+      {
+        "pitch": 4.0,
+        "pitch_dia": 61.402,
+        "minor_dia_bolt": 59.0924,
+        "minor_dia_nut": 59.67
+      },
+      {
+        "pitch": 3.0,
+        "pitch_dia": 62.0515,
+        "minor_dia_bolt": 60.3193,
+        "minor_dia_nut": 60.7525
+      },
+      {
+        "pitch": 2.0,
+        "pitch_dia": 62.701,
+        "minor_dia_bolt": 61.5462,
+        "minor_dia_nut": 61.835
+      }
+    ]
+  },
+  "hex_head": {
+    "width_across_flats": 95.0,
+    "head_height": 40.0
+  },
+  "hex_nut": {
+    "width_across_flats": 95.0,
+    "height": 51.0
+  },
+  "washer": {
+    "inner_dia": 70.0,
+    "outer_dia": 115.0,
+    "thickness": 10.0
+  }
+}

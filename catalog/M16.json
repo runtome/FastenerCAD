@@ -1,0 +1,39 @@
+{
+  "designation": "M16",
+  "nominal_diameter": 16.0,
+  "thread": {
+    "coarse": {
+      "pitch": 2.0,
+      "pitch_dia": 14.701,
+      "minor_dia_bolt": 13.5462,
+      "minor_dia_nut": 13.835
+    },
+    "fine": [
+      {
+        "pitch": 1.5,
+        "pitch_dia": 15.0258,
+        "minor_dia_bolt": 14.1596,
+        "minor_dia_nut": 14.3763
+      },
+      {
+        "pitch": 1.0,
+        "pitch_dia": 15.3505,
+        "minor_dia_bolt": 14.7731,
+        "minor_dia_nut": 14.9175
+      }
+    ]
+  },
+  "hex_head": {
+    "width_across_flats": 24.0,
+    "head_height": 10.0
+  },
+  "hex_nut": {
+    "width_across_flats": 24.0,
+    "height": 14.8
+  },
+  "washer": {
+    "inner_dia": 17.0,
+    "outer_dia": 30.0,
+    "thickness": 3.0
+  }
+}

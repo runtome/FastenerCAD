@@ -1,0 +1,45 @@
+{
+  "designation": "M30",
+  "nominal_diameter": 30.0,
+  "thread": {
+    "coarse": {
+      "pitch": 3.5,
+      "pitch_dia": 27.7267,
+      "minor_dia_bolt": 25.7058,
+      "minor_dia_nut": 26.2112
+    },
+    "fine": [
+      {
+        "pitch": 2.0,
+        "pitch_dia": 28.701,
+        "minor_dia_bolt": 27.5462,
+        "minor_dia_nut": 27.835
+      },
+      {
+        "pitch": 1.5,
+        "pitch_dia": 29.0257,
+        "minor_dia_bolt": 28.1596,
+        "minor_dia_nut": 28.3762
+      },
+      {
+        "pitch": 1.0,
+        "pitch_dia": 29.3505,
+        "minor_dia_bolt": 28.7731,
+        "minor_dia_nut": 28.9175
+      }
+    ]
+  },
+  "hex_head": {
+    "width_across_flats": 46.0,
+    "head_height": 18.7
+  },
+  "hex_nut": {
+    "width_across_flats": 46.0,
+    "height": 25.6
+  },
+  "washer": {
+    "inner_dia": 31.0,
+    "outer_dia": 56.0,
+    "thickness": 4.0
+  }
+}

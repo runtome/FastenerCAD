@@ -1,0 +1,39 @@
+{
+  "designation": "M8",
+  "nominal_diameter": 8.0,
+  "thread": {
+    "coarse": {
+      "pitch": 1.25,
+      "pitch_dia": 7.1881,
+      "minor_dia_bolt": 6.4664,
+      "minor_dia_nut": 6.6469
+    },
+    "fine": [
+      {
+        "pitch": 1.0,
+        "pitch_dia": 7.3505,
+        "minor_dia_bolt": 6.7731,
+        "minor_dia_nut": 6.9175
+      },
+      {
+        "pitch": 0.75,
+        "pitch_dia": 7.5129,
+        "minor_dia_bolt": 7.0798,
+        "minor_dia_nut": 7.1881
+      }
+    ]
+  },
+  "hex_head": {
+    "width_across_flats": 13.0,
+    "head_height": 5.3
+  },
+  "hex_nut": {
+    "width_across_flats": 13.0,
+    "height": 6.8
+  },
+  "washer": {
+    "inner_dia": 8.4,
+    "outer_dia": 16.0,
+    "thickness": 1.6
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "designation": "M10",
+  "nominal_diameter": 10.0,
+  "thread": {
+    "coarse": {
+      "pitch": 1.5,
+      "pitch_dia": 9.0258,
+      "minor_dia_bolt": 8.1596,
+      "minor_dia_nut": 8.3763
+    },
+    "fine": [
+      {
+        "pitch": 1.25,
+        "pitch_dia": 9.1881,
+        "minor_dia_bolt": 8.4664,
+        "minor_dia_nut": 8.6469
+      },
+      {
+        "pitch": 1.0,
+        "pitch_dia": 9.3505,
+        "minor_dia_bolt": 8.7731,
+        "minor_dia_nut": 8.9175
+      },
+      {
+        "pitch": 0.75,
+        "pitch_dia": 9.5129,
+        "minor_dia_bolt": 9.0798,
+        "minor_dia_nut": 9.1881
+      }
+    ]
+  },
+  "hex_head": {
+    "width_across_flats": 16.0,
+    "head_height": 6.4
+  },
+  "hex_nut": {
+    "width_across_flats": 16.0,
+    "height": 8.4
+  },
+  "washer": {
+    "inner_dia": 10.5,
+    "outer_dia": 20.0,
+    "thickness": 2.0
+  }
+}

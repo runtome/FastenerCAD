@@ -1,0 +1,33 @@
+{
+  "designation": "M2",
+  "nominal_diameter": 2.0,
+  "thread": {
+    "coarse": {
+      "pitch": 0.4,
+      "pitch_dia": 1.7402,
+      "minor_dia_bolt": 1.5092,
+      "minor_dia_nut": 1.567
+    },
+    "fine": [
+      {
+        "pitch": 0.25,
+        "pitch_dia": 1.8376,
+        "minor_dia_bolt": 1.6933,
+        "minor_dia_nut": 1.7294
+      }
+    ]
+  },
+  "hex_head": {
+    "width_across_flats": 4.0,
+    "head_height": 1.4
+  },
+  "hex_nut": {
+    "width_across_flats": 4.0,
+    "height": 1.6
+  },
+  "washer": {
+    "inner_dia": 2.2,
+    "outer_dia": 5.0,
+    "thickness": 0.3
+  }
+}

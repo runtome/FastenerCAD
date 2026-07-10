@@ -1,0 +1,45 @@
+{
+  "designation": "M24",
+  "nominal_diameter": 24.0,
+  "thread": {
+    "coarse": {
+      "pitch": 3.0,
+      "pitch_dia": 22.0515,
+      "minor_dia_bolt": 20.3193,
+      "minor_dia_nut": 20.7525
+    },
+    "fine": [
+      {
+        "pitch": 2.0,
+        "pitch_dia": 22.701,
+        "minor_dia_bolt": 21.5462,
+        "minor_dia_nut": 21.835
+      },
+      {
+        "pitch": 1.5,
+        "pitch_dia": 23.0257,
+        "minor_dia_bolt": 22.1596,
+        "minor_dia_nut": 22.3762
+      },
+      {
+        "pitch": 1.0,
+        "pitch_dia": 23.3505,
+        "minor_dia_bolt": 22.7731,
+        "minor_dia_nut": 22.9175
+      }
+    ]
+  },
+  "hex_head": {
+    "width_across_flats": 36.0,
+    "head_height": 15.0
+  },
+  "hex_nut": {
+    "width_across_flats": 36.0,
+    "height": 21.5
+  },
+  "washer": {
+    "inner_dia": 25.0,
+    "outer_dia": 44.0,
+    "thickness": 4.0
+  }
+}

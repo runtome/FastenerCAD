@@ -1,0 +1,45 @@
+{
+  "designation": "M56",
+  "nominal_diameter": 56.0,
+  "thread": {
+    "coarse": {
+      "pitch": 5.5,
+      "pitch_dia": 52.4278,
+      "minor_dia_bolt": 49.252,
+      "minor_dia_nut": 50.0463
+    },
+    "fine": [
+      {
+        "pitch": 4.0,
+        "pitch_dia": 53.402,
+        "minor_dia_bolt": 51.0924,
+        "minor_dia_nut": 51.67
+      },
+      {
+        "pitch": 3.0,
+        "pitch_dia": 54.0515,
+        "minor_dia_bolt": 52.3193,
+        "minor_dia_nut": 52.7525
+      },
+      {
+        "pitch": 2.0,
+        "pitch_dia": 54.701,
+        "minor_dia_bolt": 53.5462,
+        "minor_dia_nut": 53.835
+      }
+    ]
+  },
+  "hex_head": {
+    "width_across_flats": 85.0,
+    "head_height": 35.0
+  },
+  "hex_nut": {
+    "width_across_flats": 85.0,
+    "height": 45.0
+  },
+  "washer": {
+    "inner_dia": 62.0,
+    "outer_dia": 105.0,
+    "thickness": 10.0
+  }
+}

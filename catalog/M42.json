@@ -1,0 +1,45 @@
+{
+  "designation": "M42",
+  "nominal_diameter": 42.0,
+  "thread": {
+    "coarse": {
+      "pitch": 4.5,
+      "pitch_dia": 39.0772,
+      "minor_dia_bolt": 36.4789,
+      "minor_dia_nut": 37.1287
+    },
+    "fine": [
+      {
+        "pitch": 3.0,
+        "pitch_dia": 40.0515,
+        "minor_dia_bolt": 38.3193,
+        "minor_dia_nut": 38.7525
+      },
+      {
+        "pitch": 2.0,
+        "pitch_dia": 40.701,
+        "minor_dia_bolt": 39.5462,
+        "minor_dia_nut": 39.835
+      },
+      {
+        "pitch": 1.5,
+        "pitch_dia": 41.0258,
+        "minor_dia_bolt": 40.1596,
+        "minor_dia_nut": 40.3762
+      }
+    ]
+  },
+  "hex_head": {
+    "width_across_flats": 65.0,
+    "head_height": 26.0
+  },
+  "hex_nut": {
+    "width_across_flats": 65.0,
+    "height": 34.0
+  },
+  "washer": {
+    "inner_dia": 45.0,
+    "outer_dia": 78.0,
+    "thickness": 8.0
+  }
+}

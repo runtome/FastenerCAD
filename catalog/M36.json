@@ -1,0 +1,45 @@
+{
+  "designation": "M36",
+  "nominal_diameter": 36.0,
+  "thread": {
+    "coarse": {
+      "pitch": 4.0,
+      "pitch_dia": 33.402,
+      "minor_dia_bolt": 31.0924,
+      "minor_dia_nut": 31.67
+    },
+    "fine": [
+      {
+        "pitch": 3.0,
+        "pitch_dia": 34.0515,
+        "minor_dia_bolt": 32.3193,
+        "minor_dia_nut": 32.7525
+      },
+      {
+        "pitch": 2.0,
+        "pitch_dia": 34.701,
+        "minor_dia_bolt": 33.5462,
+        "minor_dia_nut": 33.835
+      },
+      {
+        "pitch": 1.5,
+        "pitch_dia": 35.0258,
+        "minor_dia_bolt": 34.1596,
+        "minor_dia_nut": 34.3762
+      }
+    ]
+  },
+  "hex_head": {
+    "width_across_flats": 55.0,
+    "head_height": 22.5
+  },
+  "hex_nut": {
+    "width_across_flats": 55.0,
+    "height": 31.0
+  },
+  "washer": {
+    "inner_dia": 37.0,
+    "outer_dia": 66.0,
+    "thickness": 5.0
+  }
+}

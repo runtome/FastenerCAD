@@ -1,0 +1,33 @@
+{
+  "designation": "M6",
+  "nominal_diameter": 6.0,
+  "thread": {
+    "coarse": {
+      "pitch": 1.0,
+      "pitch_dia": 5.3505,
+      "minor_dia_bolt": 4.7731,
+      "minor_dia_nut": 4.9175
+    },
+    "fine": [
+      {
+        "pitch": 0.75,
+        "pitch_dia": 5.5129,
+        "minor_dia_bolt": 5.0798,
+        "minor_dia_nut": 5.1881
+      }
+    ]
+  },
+  "hex_head": {
+    "width_across_flats": 10.0,
+    "head_height": 4.0
+  },
+  "hex_nut": {
+    "width_across_flats": 10.0,
+    "height": 5.2
+  },
+  "washer": {
+    "inner_dia": 6.4,
+    "outer_dia": 12.0,
+    "thickness": 1.6
+  }
+}
