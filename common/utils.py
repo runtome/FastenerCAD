@@ -7,11 +7,39 @@ head chamfering, and argument validation are defined exactly once.
 from __future__ import annotations
 
 import math
+from typing import cast
 
 import cadquery as cq
 
 # 2 / sqrt(3): hexagon width-across-corners to width-across-flats ratio.
 _AF_TO_AC = 2.0 / math.sqrt(3.0)
+
+
+def as_shape(workplane: cq.Workplane) -> cq.Shape:
+    """Return a workplane's first object typed as a :class:`cadquery.Shape`.
+
+    CADQuery types ``Workplane.val()`` as a broad union; parts here always hold a
+    solid/compound, so this narrows the type for volume and bounding-box queries.
+
+    Args:
+        workplane: The workplane whose value to return.
+
+    Returns:
+        The first stack object as a :class:`cadquery.Shape`.
+    """
+    return cast(cq.Shape, workplane.val())
+
+
+def iter_solids(workplane: cq.Workplane) -> list[cq.Shape]:
+    """Return all solids of a workplane typed as :class:`cadquery.Shape` objects.
+
+    Args:
+        workplane: The workplane to enumerate solids from.
+
+    Returns:
+        The solids as a list of :class:`cadquery.Shape`.
+    """
+    return cast("list[cq.Shape]", workplane.solids().vals())
 
 
 def across_flats_to_across_corners(width_across_flats: float) -> float:
@@ -84,6 +112,63 @@ def hex_prism(width_across_flats: float, height: float, workplane: str = "XY") -
     return cq.Workplane(workplane).polygon(6, across_corners).extrude(height)
 
 
+def chamfer_hex(
+    prism: cq.Workplane,
+    width_across_flats: float,
+    height: float,
+    chamfer_top: bool = True,
+    chamfer_bottom: bool = False,
+    chamfer_angle_deg: float = 30.0,
+) -> cq.Workplane:
+    """Apply ISO-style conical chamfers to a hex prism's top and/or bottom.
+
+    Each chamfer removes the six corners at that end, leaving a circular face
+    whose diameter equals the width across flats -- the characteristic look of an
+    ISO hex head (top only) or hex nut (both ends). Implemented as an
+    intersection with a revolved cutting profile so the result is a true cone
+    rather than six flat facets.
+
+    Args:
+        prism: A hex prism (e.g. from :func:`hex_prism`) extruded +Z from ``z=0``.
+        width_across_flats: Hex width across flats ``s`` (mm).
+        height: Height of the prism along Z (mm).
+        chamfer_top: Chamfer the top face (``z = height``).
+        chamfer_bottom: Chamfer the bottom face (``z = 0``).
+        chamfer_angle_deg: Chamfer face angle from the horizontal (degrees),
+            default 30 degrees per typical ISO practice.
+
+    Returns:
+        The chamfered prism as a :class:`cadquery.Workplane`.
+    """
+    if not (chamfer_top or chamfer_bottom):
+        return prism
+
+    flats_radius = width_across_flats / 2.0
+    corner_radius = across_flats_to_across_corners(width_across_flats) / 2.0
+    chamfer_height = (corner_radius - flats_radius) * math.tan(math.radians(chamfer_angle_deg))
+    # Keep chamfers within the prism even if it is short (leave a straight band).
+    chamfer_height = min(chamfer_height, height / 2.0)
+
+    # Revolved cutting tool: taper inward to the flats radius at any chamfered end
+    # and stay at the corner radius (no cut) at any un-chamfered end.
+    bottom_start = flats_radius if chamfer_bottom else corner_radius
+    top_end = flats_radius if chamfer_top else corner_radius
+    points: list[tuple[float, float]] = [(0.0, 0.0), (bottom_start, 0.0)]
+    if chamfer_bottom:
+        points.append((corner_radius, chamfer_height))
+    if chamfer_top:
+        points.append((corner_radius, height - chamfer_height))
+    points.append((top_end, height))
+    points.append((0.0, height))
+
+    # Revolve about the global Z axis. On the local "XZ" plane the global Z
+    # direction is the local y axis, i.e. local (0, 1, 0).
+    tool = (
+        cq.Workplane("XZ").polyline(points).close().revolve(360.0, (0.0, 0.0, 0.0), (0.0, 1.0, 0.0))
+    )
+    return prism.intersect(tool)
+
+
 def chamfer_hex_head(
     head: cq.Workplane,
     width_across_flats: float,
@@ -92,40 +177,25 @@ def chamfer_hex_head(
 ) -> cq.Workplane:
     """Apply the ISO-style conical top chamfer to a hex head prism.
 
-    The chamfer removes the six top corners, leaving a circular top face whose
-    diameter equals the width across flats -- the characteristic look of an ISO
-    hex head. Implemented as an intersection with a revolved cutting profile so
-    the result is a true cone rather than six flat facets.
+    Convenience wrapper around :func:`chamfer_hex` chamfering the top face only.
 
     Args:
         head: A hex prism (e.g. from :func:`hex_prism`) extruded +Z from ``z=0``.
         width_across_flats: Hex width across flats ``s`` (mm).
         height: Height of the head along Z (mm).
-        chamfer_angle_deg: Chamfer face angle from the horizontal (mm),
-            default 30 degrees per typical ISO practice.
+        chamfer_angle_deg: Chamfer face angle from the horizontal (degrees).
 
     Returns:
         The chamfered head as a :class:`cadquery.Workplane`.
     """
-    flats_radius = width_across_flats / 2.0
-    corner_radius = across_flats_to_across_corners(width_across_flats) / 2.0
-    chamfer_height = (corner_radius - flats_radius) * math.tan(math.radians(chamfer_angle_deg))
-    # Keep the chamfer within the head; clamp if the head is very short.
-    chamfer_height = min(chamfer_height, height)
-
-    # Revolved cutting tool: full corner radius up to the chamfer start, then a
-    # cone tapering inward to the flats radius at the top face.
-    tool = (
-        cq.Workplane("XZ")
-        .moveTo(0.0, 0.0)
-        .lineTo(corner_radius, 0.0)
-        .lineTo(corner_radius, height - chamfer_height)
-        .lineTo(flats_radius, height)
-        .lineTo(0.0, height)
-        .close()
-        .revolve(360.0, (0.0, 0.0, 0.0), (0.0, 0.0, 1.0))
+    return chamfer_hex(
+        head,
+        width_across_flats,
+        height,
+        chamfer_top=True,
+        chamfer_bottom=False,
+        chamfer_angle_deg=chamfer_angle_deg,
     )
-    return head.intersect(tool)
 
 
 def make_helix_wire(

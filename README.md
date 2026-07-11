@@ -70,6 +70,30 @@ joint = BoltNutAssembly(size="M10", length=50.0, clamp_length=30.0, washers=True
 joint.to_step("M10_joint.step")
 ```
 
+## Command line
+
+Installing the package provides a `fastenercad` command (or run `python -m cli`).
+The export format is inferred from the output file suffix.
+
+```bash
+# Discover what is available
+fastenercad list                      # parts, assemblies, sizes, materials
+fastenercad list materials
+
+# Generate a part (format from the -o suffix: .step / .stl / .dxf)
+fastenercad make iso4014 M8 --length 40 -o bolt.step
+fastenercad make iso4032 M8 --thread real -o nut.stl
+fastenercad make din976 M10 --length 60 --series fine -o rod.step
+
+# Generate an assembly
+fastenercad assembly bolt-nut M10 --length 50 --washers -o joint.step
+fastenercad assembly washer-stack M8 --count 4 -o shims.step
+fastenercad assembly anchor M12 --length 120 --embedment 40 -o anchor.step
+```
+
+Common `make` options: `--thread {cosmetic,real}`, `--series {coarse,fine}`,
+`--material`, `--tolerance`, `--length` (bolts/screws/rods).
+
 ## Project layout
 
 ```
@@ -77,6 +101,7 @@ common/      base class, dimension dataclasses + catalog loader, materials, tole
 threads/     ISO 68-1 metric thread profile + coarse/fine pitch tables (cosmetic + real)
 standards/   one module per standard (ISO4014, ISO4017, ISO4032, DIN933, JIS_B1180, ...)
 assemblies/  multi-part models (bolt+nut, washer stacks, anchors)
+cli/          the `fastenercad` command-line interface
 export/       STEP / STL / DXF writers
 catalog/     one JSON file per size (M1.6 ... M64) — all dimensions live here
 tests/        pytest suite

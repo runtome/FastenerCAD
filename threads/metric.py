@@ -86,17 +86,24 @@ def _tooth_profile(minor_r: float, major_r: float, pitch: float, lefthand: bool)
     tangent = Vector(0.0, axial_sign * minor_r, pitch / (2.0 * math.pi)).normalized()
     plane = Plane(origin=(minor_r, 0.0, 0.0), xDir=(1.0, 0.0, 0.0), normal=tangent.toTuple())
 
-    # Local coords: x = radial outward, y ~ axial. Truncated crest = P/8 flat.
+    # Local coords: x = radial outward, y ~ axial.
+    #  * The root half-width is kept below pitch/2 so consecutive turns leave a
+    #    small root gap rather than sharing coincident faces.
+    #  * The root edge is sunk slightly *into* the core (negative x) so the ridge
+    #    overlaps the core solid instead of meeting it tangentially -- coincident
+    #    faces make the OCC fuse fail; an overlap fuses cleanly.
+    # Both are essential for robust, fast booleans on tight small-diameter helices.
     crest_half = pitch / 16.0
-    root_half = pitch / 2.0
+    root_half = pitch * 0.45
+    overlap = 0.25 * depth
     return (
         cq.Workplane(plane)
         .polyline(
             [
-                (0.0, -root_half),
+                (-overlap, -root_half),
                 (depth, -crest_half),
                 (depth, crest_half),
-                (0.0, root_half),
+                (-overlap, root_half),
             ]
         )
         .close()
@@ -112,8 +119,9 @@ def _male_thread_solid(
 ) -> cq.Workplane:
     """Build a solid male thread (core cylinder plus helical ridges).
 
-    The helix is generated slightly over-length and the result is trimmed to
-    ``[0, length]`` with flat ends.
+    The tooth profile is swept along a helix of exactly ``length``; the resulting
+    half-pitch end overhang is trimmed back to flat faces at ``z = 0`` and
+    ``z = length``.
 
     Args:
         major_diameter: Crest (major) diameter (mm).
@@ -128,20 +136,31 @@ def _male_thread_solid(
     major_r = major_diameter / 2.0
     minor_r = minor_diameter / 2.0
 
-    helix_len = length + 2.0 * pitch
-    helix = cq.Wire.makeHelix(pitch=pitch, height=helix_len, radius=minor_r, lefthand=lefthand)
-    path = cq.Workplane(obj=helix)
-
-    ridges = _tooth_profile(minor_r, major_r, pitch, lefthand).sweep(path, isFrenet=True)
-    # Drop by one pitch so the over-length turns straddle both trim planes.
-    ridges = ridges.translate((0.0, 0.0, -pitch))
+    # Sweep the tooth profile along a helix of exactly ``length``. The end teeth
+    # overhang by half a pitch; an envelope intersection trims them flat. (Over-
+    # extending and translating the helix instead produces degenerate geometry
+    # that breaks the subsequent boolean operations.)
+    helix = cq.Wire.makeHelix(pitch=pitch, height=length, radius=minor_r, lefthand=lefthand)
+    ridges = _tooth_profile(minor_r, major_r, pitch, lefthand).sweep(
+        cq.Workplane(obj=helix), isFrenet=True
+    )
 
     core = cq.Workplane("XY").circle(minor_r).extrude(length)
     male = core.union(ridges)
 
-    # Trim to flat ends at z = 0 and z = length.
-    trim = cq.Workplane("XY").circle(major_r + 1.0).extrude(length)
-    return male.intersect(trim)
+    # Trim the half-pitch end overhang to flat faces at z = 0 and z = length.
+    # Cutting with half-space boxes is markedly more robust in OCC than an
+    # envelope intersection, which can fail on these swept helical solids.
+    span = 4.0 * (major_r + 2.0)
+    top = cq.Workplane("XY", origin=(0.0, 0.0, length)).box(
+        span, span, 2.0 * pitch, centered=(True, True, False)
+    )
+    bottom = (
+        cq.Workplane("XY")
+        .box(span, span, 2.0 * pitch, centered=(True, True, False))
+        .translate((0.0, 0.0, -2.0 * pitch))
+    )
+    return male.cut(top).cut(bottom)
 
 
 # ---------------------------------------------------------------------------

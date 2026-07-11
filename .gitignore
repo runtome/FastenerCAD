@@ -11,9 +11,6 @@ dist/
 venv/
 env/
 
-# uv
-uv.lock  # keep? remove this line to commit the lockfile for reproducible builds
-
 # Tooling caches
 .mypy_cache/
 .ruff_cache/

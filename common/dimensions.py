@@ -11,7 +11,7 @@ from __future__ import annotations
 import json
 import math
 from dataclasses import dataclass
-from functools import lru_cache
+from functools import cache, lru_cache
 from pathlib import Path
 from typing import Any
 
@@ -191,7 +191,7 @@ def _entry_from_dict(data: dict[str, Any]) -> FastenerCatalogEntry:
     )
 
 
-@lru_cache(maxsize=None)
+@cache
 def load_entry(size: str) -> FastenerCatalogEntry:
     """Load and cache the catalog entry for a nominal size.
 

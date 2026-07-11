@@ -15,13 +15,14 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from functools import cached_property
 from pathlib import Path
+from typing import ClassVar
 
 import cadquery as cq
 
 from common.dimensions import FastenerCatalogEntry, ThreadDimensions, load_entry
 from common.materials import DEFAULT_MATERIAL, get_material
 from common.tolerances import ToleranceClass
-from common.utils import require_choice
+from common.utils import as_shape, iter_solids, require_choice
 
 THREAD_MODES: tuple[str, ...] = ("cosmetic", "real")
 THREAD_SERIES: tuple[str, ...] = ("coarse", "fine")
@@ -43,6 +44,11 @@ class FastenerBase(ABC):
         tolerance: ISO 965 thread tolerance class, e.g. ``"6g"`` (external) or
             ``"6H"`` (internal).
     """
+
+    #: Standard designation (e.g. ``"ISO 4014"``); set by each concrete part.
+    STANDARD: ClassVar[str] = ""
+    #: Human-readable part name (e.g. ``"hex bolt"``); set by each concrete part.
+    PART: ClassVar[str] = ""
 
     size: str
     thread: str = "cosmetic"
@@ -99,7 +105,7 @@ class FastenerBase(ABC):
 
     def volume(self) -> float:
         """Return the solid volume in cubic millimetres."""
-        return sum(solid.Volume() for solid in self.model.solids().vals())
+        return sum(solid.Volume() for solid in iter_solids(self.model))
 
     def mass(self) -> float:
         """Return the part mass in grams, using the configured material density."""
@@ -109,7 +115,7 @@ class FastenerBase(ABC):
 
     def bounding_box(self) -> tuple[float, float, float]:
         """Return the axis-aligned bounding box size ``(dx, dy, dz)`` in mm."""
-        bb = self.model.val().BoundingBox()
+        bb = as_shape(self.model).BoundingBox()
         return (bb.xlen, bb.ylen, bb.zlen)
 
     # -- Export -------------------------------------------------------------

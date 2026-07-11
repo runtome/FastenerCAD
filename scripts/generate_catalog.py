@@ -14,7 +14,6 @@ It uses only the standard library so it can run before ``uv sync``.
 from __future__ import annotations
 
 import json
-import math
 import sys
 from pathlib import Path
 
